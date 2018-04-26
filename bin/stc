@@ -9,7 +9,7 @@ IMAGE=""
 PROJ_PROPS="./.project_props"
 
 ## variables for command line arguments
-INTERACTIVE_SHELL="/bin/bash"
+CONTAINER_SHELL="/bin/bash"
 launch_command=
 cleanup=
 verbose=
@@ -19,23 +19,34 @@ verbose=
 ##
 USAGE=$(cat <<EOM
 Usage: `basename $0` OPTIONS
+
 Options:
--c cmd       Run command. Runs this cmd instead of the default one in the container image. Implies the -i option.
--f filename  Project Props file. Uses the filename instead of ./.project_props file to read in the project container parameters.
--h           Help. Prints this help text.
--i           Interactive mode. Interactive /bin/bash prompt from within the container. Same as -c /bin/bash.
--v           Verbose. Prints the container commandline parameters before starting the container.
--X           Cleanup. Kills and removes any running or exited project container instance.
+
+-c cmd       Run command          Runs this cmd instead of the default one in the
+                                  container image.
+
+-f filename  Project Props file   Uses the filename instead of ./.project_props
+                                  file to read in the project container parameters.
+
+-h           Help                 Prints this help text.
+
+-i           Interactive mode     Interactive /bin/bash prompt from within the
+                                  container. Shortcut for -c /bin/bash.
+
+-v           Verbose              Prints the container commandline parameters
+                                  before starting the container.
+
+-X           Cleanup              Kills and removes any running or exited project
+                                  container instance.
 EOM
 )
 while getopts ":c:iXvhf:" arg; do
 	case $arg in
 		c)
-			INTERACTIVE_SHELL="$OPTARG"
-			launch_command="$INTERACTIVE_SHELL"
+			launch_command="$OPTARG"
 			;;
 		i)
-			launch_command="$INTERACTIVE_SHELL"
+			launch_command="$CONTAINER_SHELL"
 			;;
 		X)
 			cleanup="YES"
