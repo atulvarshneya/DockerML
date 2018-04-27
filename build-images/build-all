@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for tag in py2 py3 gpu-py2 gpu-py3; do
+	echo "Building $tag ======================================================"
+	cat Dockerfile-Head-"$tag" Dockerfile-CommonTail > Dockerfile
+	docker build -t atulvarshneya/ml-image:latest-"$tag" .
+	docker push atulvarshneya/ml-image:latest-"$tag"
+	rm Dockerfile
+	echo "DONE building $tag ================================================="
+done
