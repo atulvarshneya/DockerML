@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ## Initialized values for running the project container
 NAME=""
 WORKAREA=""
@@ -19,25 +18,18 @@ verbose=
 ##
 USAGE=$(cat <<EOM
 Usage: `basename $0` OPTIONS
-
 Options:
-
--c cmd       Run command          Runs this cmd instead of the default one in the
-                                  container image.
-
--f filename  Project Props file   Uses the filename instead of ./.project_props
-                                  file to read in the project container parameters.
-
--h           Help                 Prints this help text.
-
--i           Interactive mode     Interactive /bin/bash prompt from within the
-                                  container. Shortcut for -c /bin/bash.
-
--v           Verbose              Prints the container commandline parameters
-                                  before starting the container.
-
--X           Cleanup              Kills and removes any running or exited project
-                                  container instance.
+-c cmd   Run command        Runs this cmd instead of the default one in the
+                            container image.
+-f file  Project Props file Uses the filename instead of ./.project_props
+                            file to read in the project container parameters.
+-h       Help               Prints this help text.
+-i       Interactive mode   Interactive /bin/bash prompt from within the
+                            container. Shortcut for -c /bin/bash.
+-v       Verbose            Prints the container commandline parameters
+                            before starting the container.
+-X       Cleanup            Kills and removes any running or exited container
+                            instance with the project name.
 EOM
 )
 while getopts ":c:iXvhf:" arg; do
