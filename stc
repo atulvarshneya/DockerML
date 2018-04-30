@@ -152,7 +152,7 @@ if [ -z "$cleanup" ]; then
 		echo "IMAGE      ${IMAGE}"
 		echo "WORKAREA   $WORKAREA"
 		echo "MOUNTPOINT $MOUNTPOINT"
-		echo "AUTH       $AUTH"
+		echo "AUTH       ${AUTH:-Auth ON}"
 		echo "COMMAND    ${launch_command:-No Command}"
 		echo
 		echo "STARTING project container..."
