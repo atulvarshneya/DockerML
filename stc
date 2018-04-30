@@ -9,7 +9,7 @@ PROJ_PROPS="./.project_props"
 
 ## variables for command line arguments
 CONTAINER_SHELL="/bin/bash"
-=
+AUTH=
 launch_command=
 cleanup=
 verbose=
@@ -31,9 +31,9 @@ Options:
                             before starting the container.
 -X       Cleanup            Kills and removes any running or exited container
                             instance with the project name.
--A       No Authention      Sets environment variable PASSWORD to empty.
-                            This has effect on Jupyter allowing access without
-                            any authentication (token, password)
+-A       No Authention      Sets environment variable PASSWORD to empty in
+                            the container. This has effect on Jupyter allowing
+                            access without any authentication (token, password)
 EOM
 )
 while getopts ":c:iXAvhf:" arg; do
