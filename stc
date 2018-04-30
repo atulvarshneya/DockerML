@@ -9,6 +9,7 @@ PROJ_PROPS="./.project_props"
 
 ## variables for command line arguments
 CONTAINER_SHELL="/bin/bash"
+=
 launch_command=
 cleanup=
 verbose=
@@ -30,9 +31,12 @@ Options:
                             before starting the container.
 -X       Cleanup            Kills and removes any running or exited container
                             instance with the project name.
+-A       No Authention      Sets environment variable PASSWORD to empty.
+                            This has effect on Jupyter allowing access without
+                            any authentication (token, password)
 EOM
 )
-while getopts ":c:iXvhf:" arg; do
+while getopts ":c:iXAvhf:" arg; do
 	case $arg in
 		c)
 			launch_command="$OPTARG"
@@ -42,6 +46,9 @@ while getopts ":c:iXvhf:" arg; do
 			;;
 		X)
 			cleanup="YES"
+			;;
+		A)
+			AUTH="--env PASSWORD="
 			;;
 		v)
 			verbose="YES"
@@ -149,5 +156,5 @@ if [ -z "$cleanup" ]; then
 		echo
 		echo "STARTING project container..."
 	fi
-	docker run --name $NAME -it --rm -v $WORKAREA:/notebooks/$MOUNTPOINT -p 8888:8888 ${IMAGE} ${launch_command}
+	docker run $AUTH --name $NAME -it --rm -v $WORKAREA:/notebooks/$MOUNTPOINT -p 8888:8888 ${IMAGE} ${launch_command}
 fi
