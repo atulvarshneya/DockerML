@@ -5,6 +5,7 @@ NAME=""
 WORKAREA=""
 MOUNTPOINT=""
 IMAGE=""
+CDDIR=""
 PROJ_PROPS="./.project_props"
 
 ## variables for command line arguments
@@ -87,6 +88,9 @@ if [ -r $PROJ_PROPS ]; then
 		    "WORKAREA")
 			eval "WORKAREA=$value"
 			;;
+		    "CDDIR")
+			eval "CDDIR=$value"
+			;;
 		    "IMAGE")
 			eval "IMAGE=$value"
 			;;
@@ -131,7 +135,8 @@ if [ "$failed" -eq 1 ]; then
 fi
 
 WORKAREA=$(cd $WORKAREA; pwd)
-MOUNTPOINT=`basename $WORKAREA`
+MOUNTPOINT=/hostFS/`basename $WORKAREA`
+CDDIR=${CDDIR:-$MOUNTPOINT}
 
 ## cleanup -- kill the container if it is running, and remove the container if it exists
 isthere=`docker ps -a -f "name=$NAME" -q`
@@ -152,11 +157,12 @@ if [ -z "$cleanup" ]; then
 		echo "IMAGE      ${IMAGE}"
 		echo "WORKAREA   $WORKAREA"
 		echo "MOUNTPOINT $MOUNTPOINT"
+		echo "CDDIR      $CDDIR"
 		echo "AUTH       ${AUTH:-Auth ON}"
 		echo "COMMAND    ${launch_command:-No Command}"
 		echo
 		echo "STARTING project container..."
 	fi
 	docker pull ${IMAGE}
-	docker run $AUTH --name $NAME -it --rm -v $WORKAREA:/notebooks/$MOUNTPOINT -p 8888:8888 ${IMAGE} ${launch_command}
+	docker run $AUTH --name $NAME -it --rm -v $WORKAREA:$MOUNTPOINT -w=$CDDIR -p 8888:8888 ${IMAGE} ${launch_command}
 fi
