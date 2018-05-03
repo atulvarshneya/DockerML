@@ -1,10 +1,15 @@
 #!/bin/bash
 
+USERID=atulvarshneya
+
+echo "==LOGIN INTO DOCKER============================"
+docker login --username=$USERID
+
 for tag in py2 py3 gpu-py2 gpu-py3; do
 	echo "Building $tag ======================================================"
 	cat Dockerfile-Head-"$tag" Dockerfile-CommonTail > Dockerfile
-	docker build -t atulvarshneya/ml-image:latest-"$tag" .
-	docker push atulvarshneya/ml-image:latest-"$tag"
+	docker build -q -t $USERID/ml-image:latest-"$tag" .
+	docker push $USERID/ml-image:latest-"$tag"
 	rm Dockerfile
 	echo "DONE building $tag ================================================="
 done

@@ -1,3 +1,4 @@
+MAINTAINER "atul.varshneya@gmail.com"
 RUN rm BUILD
 RUN rm LICENSE
 RUN rm 1_hello_tensorflow.ipynb
