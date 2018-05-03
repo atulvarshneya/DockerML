@@ -157,5 +157,6 @@ if [ -z "$cleanup" ]; then
 		echo
 		echo "STARTING project container..."
 	fi
+	docker pull ${IMAGE}
 	docker run $AUTH --name $NAME -it --rm -v $WORKAREA:/notebooks/$MOUNTPOINT -p 8888:8888 ${IMAGE} ${launch_command}
 fi
