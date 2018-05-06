@@ -6,6 +6,8 @@ WORKAREA=""
 MOUNTPOINT=""
 IMAGE=""
 CDDIR=""
+PORTMAP=""
+COMMAND=""
 PROJ_PROPS="./.project_props"
 
 ## variables for command line arguments
@@ -94,6 +96,12 @@ if [ -r $PROJ_PROPS ]; then
 		    "IMAGE")
 			eval "IMAGE=$value"
 			;;
+		    "PORTMAP")
+			PORTMAP="$value"
+			;;
+		    "COMMAND")
+			COMMAND="$value"
+			;;
 		    "")
 			# ignore empty lines
 			;;
@@ -137,6 +145,8 @@ fi
 WORKAREA=$(cd $WORKAREA; pwd)
 MOUNTPOINT=/hostFS/`basename $WORKAREA`
 CDDIR=${CDDIR:-$MOUNTPOINT}
+launch_command=${launch_command:-$COMMAND}
+PORTMAP=${PORTMAP:-"-p 8888:8888"}
 
 ## cleanup -- kill the container if it is running, and remove the container if it exists
 isthere=`docker ps -a -f "name=$NAME" -q`
@@ -164,5 +174,5 @@ if [ -z "$cleanup" ]; then
 		echo "STARTING project container..."
 	fi
 	docker pull ${IMAGE}
-	docker run $AUTH --name $NAME -it --rm -v $WORKAREA:$MOUNTPOINT -w=$CDDIR -p 8888:8888 ${IMAGE} ${launch_command}
+	docker run $AUTH --name $NAME -it --rm -v $WORKAREA:$MOUNTPOINT -w=$CDDIR $PORTMAP  ${IMAGE} ${launch_command}
 fi

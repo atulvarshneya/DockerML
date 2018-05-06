@@ -1,1 +1,1 @@
-FROM tensorflow/tensorflow:latest-gpu
+FROM atulvarshneya/ml-image:latest-gpu-py2
