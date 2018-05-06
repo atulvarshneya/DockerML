@@ -1,9 +1,6 @@
 MAINTAINER "atul.varshneya@gmail.com"
 RUN apt-get update
 RUN apt install -y default-jdk
-RUN cd /tmp && curl -o h2o-3.18.0.8.zip http://h2o-release.s3.amazonaws.com/h2o/rel-wolpert/8/h2o-3.18.0.8.zip
-RUN cd /tmp && unzip h2o-3.18.0.8.zip && mv h2o-3.18.0.8 / && ln -s h2o-3.18.0.8 /h2o
-EXPOSE 54321
 RUN pip install requests tabulate scikit-learn colorama future
 RUN pip uninstall h2o
 RUN pip install http://h2o-release.s3.amazonaws.com/h2o/rel-wolpert/8/Python/h2o-3.18.0.8-py2.py3-none-any.whl
