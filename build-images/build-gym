@@ -1,0 +1,11 @@
+#!/bin/bash
+
+USERID=atulvarshneya
+
+echo "==LOGIN INTO DOCKER============================"
+docker login --username=$USERID
+
+echo "Building gym ======================================================="
+docker build -q -f Dockerfile-gym -t $USERID/ml-image:latest-gym .
+docker push $USERID/ml-image:latest-gym
+echo "DONE building gym =================================================="
