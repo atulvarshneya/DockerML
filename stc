@@ -97,7 +97,7 @@ if [ -r $PROJ_PROPS ]; then
 			eval "IMAGE=$value"
 			;;
 		    "PORTMAP")
-			PORTMAP="$value"
+			PORTMAP="-p $value"
 			;;
 		    "COMMAND")
 			COMMAND="$value"
