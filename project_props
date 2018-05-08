@@ -1,0 +1,55 @@
+# ######
+# Create a file .project_props in the directory of the project. Be in that directory
+# when you run the stc command to start a container. The .project_props file provides
+# the parameters to be used to start the container specific for the project.
+# The format of that file is provided here
+# ######
+
+## WARNING
+# The '=' should appear only at one place as shown in the examples below,
+# separating the parameter name and its value and not in the value of the parameter.
+# Yes, this is a limitation.
+
+## WARNING
+# The command name and values are sensitive to extra spaces.
+# So "NAME= xyz" and "NAME=xyz" are different.
+# "NAME =xyz" will look for a parameter "NAME " and not "NAME"
+# Yes, this is annoying.
+
+## MANDATORY parameter
+# --------------------
+# NAME is the name of the container you wish to have for this project.
+# Running the stc command again from the project directory will kill and remove any
+# existing containers with this name and start a fresh one with this name
+NAME=ML-CONTAINER
+
+## MANDATORY parameter
+# --------------------
+# The docker image to run for this container
+IMAGE=atulvarshneya/ml-image:latest-py3
+
+## MANDATORY parameter
+# --------------------
+# WORKAREA directory that will be mounted in the container at /hostFS/`basename $WORKAREA`
+# It is common to just give the value as current directory i.e., '.'
+WORKAREA=.
+
+## OPTIONAL parameter
+# --------------------
+# PORTMAP to map the container's EXPOSE'd ports to the host's ports.
+# There can be multiple entries for the PORTMAP parameter.
+# PORTMAP=8888:8888
+# PORTMAP=54321:54321
+
+## OPTIONAL parameter
+# --------------------
+# CDDIR to go to a specific directory on the start of the container. If you are going 
+# to run a COMMAND (see below) that will be run from this directory
+# CDDIR=/notebooks
+
+## OPTIONAL parameter
+# --------------------
+# COMMAND the command to run at the start of the container.  This overrides the default
+# command specified by the CMD in Dockerfile.
+# Note: This gets overriden by the stc command options -c <command> and -i.
+# COMMAND=/usr/local/bin/jupyter notebook --allow-root

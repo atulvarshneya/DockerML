@@ -97,7 +97,7 @@ if [ -r $PROJ_PROPS ]; then
 			eval "IMAGE=$value"
 			;;
 		    "PORTMAP")
-			PORTMAP="-p $value"
+			PORTMAP="-p $value "${PORTMAP}
 			;;
 		    "COMMAND")
 			COMMAND="$value"
@@ -165,6 +165,7 @@ if [ -z "$cleanup" ]; then
 	if [ -n "$verbose" ]; then
 		echo "NAME       $NAME"
 		echo "IMAGE      ${IMAGE}"
+		echo "PORTMAP    ${PORTMAP:-Defaults}"
 		echo "WORKAREA   $WORKAREA"
 		echo "MOUNTPOINT $MOUNTPOINT"
 		echo "CDDIR      $CDDIR"
