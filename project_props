@@ -1,13 +1,15 @@
 # ######
-# Create a file .project_props in the directory of the project. Be in that directory
-# when you run the stc command to start a container. The .project_props file provides
-# the parameters to be used to start the container specific for the project.
+# Create a file .project_props in the directory of the project. Be in that
+# directory when you run the stc command to start a container.
+# The .project_props file provides the parameters to be used to start the
+# container specific for the project.
 # The format of that file is provided here
 # ######
 
 ## WARNING
 # The '=' should appear only at one place as shown in the examples below,
-# separating the parameter name and its value and not in the value of the parameter.
+# separating the parameter name and its value and not in the value of
+# the parameter.
 # Yes, this is a limitation.
 
 ## WARNING
@@ -19,8 +21,9 @@
 ## MANDATORY parameter
 # --------------------
 # NAME is the name of the container you wish to have for this project.
-# Running the stc command again from the project directory will kill and remove any
-# existing containers with this name and start a fresh one with this name
+# Running the stc command again from the project directory will kill and
+# remove any existing containers with this name and start a fresh one
+# with this name
 NAME=ML-CONTAINER
 
 ## MANDATORY parameter
@@ -30,7 +33,8 @@ IMAGE=atulvarshneya/ml-image:latest-py3
 
 ## MANDATORY parameter
 # --------------------
-# WORKAREA directory that will be mounted in the container at /hostFS/`basename $WORKAREA`
+# WORKAREA directory that will be mounted in the container at
+# /hostFS/`basename $WORKAREA`
 # It is common to just give the value as current directory i.e., '.'
 WORKAREA=.
 
@@ -43,13 +47,13 @@ WORKAREA=.
 
 ## OPTIONAL parameter
 # --------------------
-# CDDIR to go to a specific directory on the start of the container. If you are going 
-# to run a COMMAND (see below) that will be run from this directory
+# CDDIR to go to a specific directory on the start of the container. If you
+# are going to run a COMMAND (see below) that will be run from this directory
 # CDDIR=/notebooks
 
 ## OPTIONAL parameter
 # --------------------
-# COMMAND the command to run at the start of the container.  This overrides the default
-# command specified by the CMD in Dockerfile.
+# COMMAND the command to run at the start of the container.  This overrides
+# the default command specified by the CMD in Dockerfile.
 # Note: This gets overriden by the stc command options -c <command> and -i.
 # COMMAND=/usr/local/bin/jupyter notebook --allow-root
