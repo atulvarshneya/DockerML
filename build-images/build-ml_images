@@ -53,7 +53,7 @@ docker login --username=$USERID
 for tag in py2 py3 gpu-py2 gpu-py3; do
 	echo "Building ${tag} ======================================================"
 	cat Dockerfile-Head-"${tag}" Dockerfile-CommonTail > Dockerfile
-	docker build -q -t $USERID/ml-image:${NEWVER}-"${tag}" .
+	docker build -t $USERID/ml-image:${NEWVER}-"${tag}" .
 	docker push $USERID/ml-image:${NEWVER}-"${tag}"
 	if [[ "$LATEST_TOO" =~ "YES" ]] ; then
 		docker tag $USERID/ml-image:${NEWVER}-"${tag}" $USERID/ml-image:latest-"${tag}"

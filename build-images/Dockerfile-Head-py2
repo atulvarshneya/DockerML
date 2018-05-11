@@ -1,1 +1,1 @@
-FROM atulvarshneya/ml-image:latest-py2
+FROM atulvarshneya/ml-image:v3-py2
