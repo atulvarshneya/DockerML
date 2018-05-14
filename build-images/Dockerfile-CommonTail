@@ -10,4 +10,9 @@ RUN pip install requests tabulate scikit-learn colorama future http://h2o-releas
 # CMD ["/usr/local/bin/jupyter", "notebook", "--allow-root"]
 # v4
 RUN pip install imageio
+# CMD ["/usr/local/bin/jupyter", "notebook", "--allow-root"]
+# v5
+RUN apt-get install -y r-base
+RUN apt-get install -y libcurl4-gnutls-dev libssl-dev
+COPY install-irkernel.R /tmp && Rscript install-irkernel.R
 CMD ["/usr/local/bin/jupyter", "notebook", "--allow-root"]
