@@ -1,28 +1,13 @@
 # v1
-# MAINTAINER "atul.varshneya@gmail.com"
-# RUN rm BUILD
-# RUN rm LICENSE
-# RUN rm 1_hello_tensorflow.ipynb
-# RUN rm 2_getting_started.ipynb
-# RUN rm 3_mnist_from_scratch.ipynb
-# RUN pip install --upgrade pip
-# RUN pip install keras
-# RUN pip install seaborn
-# RUN pip install xlrd
-# RUN pip install dill
-# RUN pip install flask
-# RUN pip install requests
-# RUN pip install gunicorn
-# RUN pip install xgboost
+MAINTAINER "atul.varshneya@gmail.com"
+RUN rm BUILD LICENSE 1_hello_tensorflow.ipynb 2_getting_started.ipynb 3_mnist_from_scratch.ipynb
+RUN pip install --upgrade pip
+RUN pip install keras seaborn xlrd dill flask requests gunicorn xgboost
 # CMD ["/usr/local/bin/jupyter" "notebook" "--allow-root"]
 # v3
-# MAINTAINER "atul.varshneya@gmail.com"
-# RUN apt-get update
-# RUN apt install -y default-jdk
-# RUN pip install requests tabulate scikit-learn colorama future
-# RUN pip install http://h2o-release.s3.amazonaws.com/h2o/rel-wolpert/8/Python/h2o-3.18.0.8-py2.py3-none-any.whl
+RUN apt-get update && apt install -y default-jdk
+RUN pip install requests tabulate scikit-learn colorama future http://h2o-release.s3.amazonaws.com/h2o/rel-wolpert/8/Python/h2o-3.18.0.8-py2.py3-none-any.whl
 # CMD ["/usr/local/bin/jupyter", "notebook", "--allow-root"]
 # v4
-MAINTAINER "atul.varshneya@gmail.com"
 RUN pip install imageio
 CMD ["/usr/local/bin/jupyter", "notebook", "--allow-root"]

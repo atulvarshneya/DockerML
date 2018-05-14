@@ -1,1 +1,1 @@
-FROM atulvarshneya/ml-image:v3-py2
+FROM tensorflow/tensorflow:latest
