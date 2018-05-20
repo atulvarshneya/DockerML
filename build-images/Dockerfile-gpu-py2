@@ -1,3 +1,4 @@
+FROM tensorflow/tensorflow:latest-gpu
 # v1
 MAINTAINER "atul.varshneya@gmail.com"
 RUN rm BUILD LICENSE 1_hello_tensorflow.ipynb 2_getting_started.ipynb 3_mnist_from_scratch.ipynb
@@ -20,7 +21,5 @@ RUN apt-get install -y r-cran-rjava
 COPY install-irkernel-addlpkgs.R /tmp
 RUN Rscript /tmp/install-irkernel-addlpkgs.R
 RUN pip install tzlocal
-RUN pip install rpy2
-# for python 2 use the older version of rpy2==2.8.6
-# RUN pip install rpy2==2.8.6
+RUN pip install rpy2==2.8.6
 CMD ["/usr/local/bin/jupyter", "notebook", "--allow-root"]
