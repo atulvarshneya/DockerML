@@ -20,23 +20,24 @@
 
 ## MANDATORY parameter
 # --------------------
-# NAME is the name of the container you wish to have for this project.
-# Running the stc command again from the project directory will kill and
-# remove any existing containers with this name and start a fresh one
-# with this name
-NAME=ML-CONTAINER
-
-## MANDATORY parameter
-# --------------------
 # The docker image to run for this container
 IMAGE=atulvarshneya/ml-image:latest-py3
 
-## MANDATORY parameter
+## OPTIONAL parameter
+# --------------------
+# NAME is the name of the container you wish to have for this project.
+# Running the stc command again from the project directory will kill and
+# remove any existing containers with this name and start a fresh one
+# with this name. It defaults to the basename of the current directory.
+# NAME=ML-CONTAINER
+
+## OPTIONAL parameter
 # --------------------
 # WORKAREA directory that will be mounted in the container at
 # /hostFS/`basename $WORKAREA`
 # It is common to just give the value as current directory i.e., '.'
-WORKAREA=.
+# Also, it defaults to the current directory.
+# WORKAREA=.
 
 ## OPTIONAL parameter
 # --------------------
