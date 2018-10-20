@@ -58,6 +58,5 @@ for tag in py2 py3 gpu-py2 gpu-py3; do
 		docker tag $USERID/ml-image:${NEWVER}-"${tag}" $USERID/ml-image:latest-"${tag}"
 		docker push $USERID/ml-image:latest-"${tag}"
 	fi
-	rm Dockerfile
 	echo "DONE building ${tag} ================================================="
 done
